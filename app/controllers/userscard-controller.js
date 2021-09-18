@@ -239,6 +239,7 @@ class UsersCardController {
     async GetUserData(req, res){
       const { name } = req.params;
       const infoPack = [] 
+      const firstData = []
       try {
 
         const dataFirst = await faceitAxios.get(`https://open.faceit.com/data/v4/players?nickname=${name}&game=csgo`)
@@ -248,8 +249,53 @@ class UsersCardController {
         const dataPass = await faceitAxios.get(`https://open.faceit.com/data/v4/players/${dataFirst.data.player_id}/history?game=csgo&offset=0&limit=1`) 
         const dataThird = await faceitAxios.get(`https://open.faceit.com/data/v4/matches/${dataPass.data.items[0].match_id}`) 
         infoPack.push(dataThird.data)
-        console.log(infoPack); 
-        res.send(infoPack)  
+
+        firstData.push({
+          playerInfo: {
+            id: infoPack[0].player_id,
+            nickname: infoPack[0].nickname,
+            avatar: infoPack[0].avatar,
+            country: infoPack[0].country,
+            steamId: infoPack[0].platforms.steam,
+            last_infraction_date: infoPack[0].infractions.last_infraction_date,
+            accLvl: infoPack[0].games.csgo.skill_level_label,
+            elo: infoPack[0].games.csgo.faceit_elo,
+            friends_ids: infoPack[0].friends_ids,
+            membership: infoPack[0].memberships[0],
+            infraction_pack: {
+              afk: infoPack[0].infractions.afk,
+              leaver: infoPack[0].infractions.leaver,
+              que_not_checkedin: infoPack[0].infractions.qm_not_checkedin,
+              kicked: infoPack[0].infractions.qm_not_voted
+            }
+          },
+          playerStats: {
+            lastFiveMatches: infoPack[1].lifetime["Recent Results"],
+            totalWinRatio: infoPack[1].lifetime["Win Rate %"],
+            totalKD: infoPack[1].lifetime["Average K/D Ratio"],
+            currentWinStreak: infoPack[1].lifetime["Current Win Streak"],
+            totalWinRatio: infoPack[1].lifetime["Win Rate %"],
+            totalWins: infoPack[1].lifetime["Wins"],
+            totalMatches: infoPack[1].lifetime["Matches"],
+            totalHsProc: infoPack[1].lifetime["Average Headshots %"],
+            longestWinStreak: infoPack[1].lifetime["Longest Win Streak"],
+            totalMapInfo: infoPack[1].segments
+
+          },
+          lastMatchInfo: {
+            matchType: infoPack[2].competition_type,
+            matchTypeName: infoPack[2].competition_name,
+            organizer: infoPack[2].organizer_id,
+            teamOne: infoPack[2].teams.faction1,
+            teamTwo: infoPack[2].teams.faction2,
+            startDate: infoPack[2].started_at,
+            demoUrl: infoPack[2].demo_url,
+            results: infoPack[2].results,
+            matchStatus: infoPack[2].status
+          }
+        })
+
+        res.send(firstData)  
       } catch (error) {
         res.send('404')
       }             
