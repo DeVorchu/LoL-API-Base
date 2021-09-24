@@ -249,6 +249,8 @@ class UsersCardController {
         const dataPass = await faceitAxios.get(`https://open.faceit.com/data/v4/players/${dataFirst.data.player_id}/history?game=csgo&offset=0&limit=1`) 
         const dataThird = await faceitAxios.get(`https://open.faceit.com/data/v4/matches/${dataPass.data.items[0].match_id}`) 
         infoPack.push(dataThird.data)
+        const dataFourth = await faceitAxios.get(`https://open.faceit.com/data/v4/matches/${dataPass.data.items[0].match_id}/stats`) 
+        infoPack.push(dataFourth.data)
 
         firstData.push({
           playerInfo: {
@@ -283,6 +285,9 @@ class UsersCardController {
 
           },
           lastMatchInfo: {
+            matchId: infoPack[2].match_id,
+            mapPicked: infoPack[2].voting.map.pick,
+            locationPicked: infoPack[2].voting.location.pick,
             matchType: infoPack[2].competition_type,
             matchTypeName: infoPack[2].competition_name,
             organizer: infoPack[2].organizer_id,
@@ -291,8 +296,10 @@ class UsersCardController {
             startDate: infoPack[2].started_at,
             demoUrl: infoPack[2].demo_url,
             results: infoPack[2].results,
-            matchStatus: infoPack[2].status
-          }
+            matchStatus: infoPack[2].status,
+            score: infoPack[3].rounds[0].round_stats["Score"]
+          },
+          
         })
 
         res.send(firstData)  
