@@ -302,7 +302,7 @@ class UsersCardController {
           
         })
 
-        res.send(firstData)  
+        res.send(infoPack)  
       } catch (error) {
         res.send('404')
       }             
