@@ -1,13 +1,10 @@
 import app from './app.js';
-import {PlayerInfo} from '../app/Entities/PlayerInfo.js'
 
-const port = 3000;
+const port = 1337;
 app.listen(port, () => {
-    console.log(`Serwer działa na porcie ${port}`);
+    console.log(`server is rinin on da port: ${port}`);
 });
 
-const player = new PlayerInfo('Edek')
-console.log(player.nameGenerator());
 
 
   
