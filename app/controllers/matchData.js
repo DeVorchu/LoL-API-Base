@@ -1,4 +1,5 @@
 import MatchDataModel from '../db/models/matchData.js'
+import PlayerStats from '../usecases/playersStats.js'
 
 class MatchData {   
     
@@ -13,21 +14,11 @@ class MatchData {
     async GetDatabyTeamId(req, res){}
 
     async addData(req, res){
-        const match = new MatchDataModel({
-            date: new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
-            matchData: req.body.matchData
-        });
+        const stats = new PlayerStats()
+        stats.SavePlayerStats(req.body.matchData)
+    };
 
-        console.log(req.body);
-
-        try {
-            await match.save()
-            res.status(201).json(match)
-
-        } catch (e) {
-            console.log(e); 
-        }
-    }
+   
 
      
   
