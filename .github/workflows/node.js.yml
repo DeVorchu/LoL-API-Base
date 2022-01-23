@@ -18,7 +18,8 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: docker build api
-        docker build . -t crystal-api
+      run: |
+          docker build . -t crystal-api
     - name: docker push
       run: |
         docker push crystal-api
