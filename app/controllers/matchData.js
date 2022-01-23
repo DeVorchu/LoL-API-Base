@@ -1,5 +1,5 @@
 import MatchDataModel from '../db/models/matchData.js'
-import PlayerStats from '../usecases/playersStats.js'
+import PlayerStats from '../_players/usecases/playersStats.js'
 
 class MatchData {   
     
@@ -15,13 +15,10 @@ class MatchData {
 
     async addData(req, res){
         const stats = new PlayerStats()
-        stats.SavePlayerStats(req.body.matchData)
+        const ree = stats.SavePlayerStats(req.body.matchData)
+        res.json({status: ree})
     };
 
-   
-
-     
-  
 }
 
 
