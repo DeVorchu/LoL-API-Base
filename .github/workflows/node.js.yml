@@ -25,4 +25,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: docker build . -t crystal-api
-    - run: docker run -p 30343:1338 crystal-api
+    - run: docker run -d -p 30343:1338 crystal-api
