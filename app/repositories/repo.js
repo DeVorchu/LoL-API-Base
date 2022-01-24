@@ -27,10 +27,10 @@ class Repo{
             qdKills: data.QUADRA_KILLS,
             ptKills: data.PENTA_KILLS, 
             experience: data.EXP,
-            qSpdatal: data.SPdataL1_CAST, 
-            wSpdatal: data.SPdataL2_CAST,
-            eSpdatal: data.SPdataL3_CAST,
-            rSpdatal: data.SPdataL4_CAST,
+            qSpell: data.SPELL1_CAST, 
+            wSpell: data.SPELL2_CAST,
+            eSpell: data.SPELL3_CAST,
+            rSpell: data.SPELL4_CAST,
         })
  
         await mongooseRepo.SavePlayerData(playerData)  

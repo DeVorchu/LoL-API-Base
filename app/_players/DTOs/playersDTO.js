@@ -4,4 +4,6 @@ class MatchDTO{
     constructor() {
         
       }
+
+       
 }

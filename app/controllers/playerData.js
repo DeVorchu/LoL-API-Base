@@ -34,7 +34,7 @@ class PlayerData {
         console.log('STEP 1'); 
         const stats = new _usecasePlayersStats()
         const ree = stats.SavePlayerStats(req.body.matchData)
-        res.json({status: ree})
+        res.json({status: ree})  
     };
 
   
