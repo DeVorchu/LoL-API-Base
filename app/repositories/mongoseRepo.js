@@ -1,4 +1,5 @@
 import playerData from "../db/models/playerData.js"
+import matchData from '../db/models/matchData.js'
 
  
 class MongooseRepo{
@@ -6,6 +7,11 @@ class MongooseRepo{
     async SavePlayerData(playerData){
         console.log('DODANO STATYSTYKI GRACZA');  
         let res = await playerData.save()  
+    } 
+
+    async SaveMatchData(matchData){
+        console.log('DODANO STATYSTYKI MECZU');  
+        let res = await matchData.save()  
     } 
 
     async GetAllPlayerData(){

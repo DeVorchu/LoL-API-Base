@@ -1,4 +1,5 @@
 import PlayerData from "../db/models/playerData.js"
+import MatchData from '../db/models/matchData.js'
 import MongooseRepo from './mongoseRepo.js'
 
 
@@ -34,6 +35,21 @@ class Repo{
         })
  
         await mongooseRepo.SavePlayerData(playerData)  
+    }
+
+    async SaveMatchData(data){
+        const mongooseRepo = new MongooseRepo()
+
+        const matchData = new MatchData({
+            date: data.leagueName ,            
+            matchData: data.matchData.statsJson,
+            team100Name: data.team100Name,
+            team200Name: data.team200Name,
+            leagueName: data.leagueName
+            
+        })
+ 
+        await mongooseRepo.SaveMatchData(matchData)  
     }
 
     async GetAllPlayersyData(){

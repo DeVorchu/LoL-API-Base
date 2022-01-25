@@ -71,27 +71,25 @@ class StatsData {
         
         
         
-        ree.forEach(elem => {
+        ree.forEach(elem => {            
+            let found = false;
 
-            
-                let found = false;
+            for (const el of arrOfStats) {
+    
+                if (el.name === elem.name) {                        
+                    el.matches.push(elem)    
+                    found = true  
+                    break
+                } 
+                
+            }
 
-                for (const el of arrOfStats) {
-     
-                    if (el.name === elem.name) {                        
-                        el.matches.push(elem)    
-                        found = true  
-                        break
-                    } 
-                    
-                }
-
-                if (!found) {
-                    let statsQuev = new StatsQue()
-                    statsQuev.name = elem.name
-                    statsQuev.matches = [elem]
-                    arrOfStats.push(statsQuev)
-                }                 
+            if (!found) {
+                let statsQuev = new StatsQue()
+                statsQuev.name = elem.name
+                statsQuev.matches = [elem]
+                arrOfStats.push(statsQuev)
+            }                 
             
         })
 

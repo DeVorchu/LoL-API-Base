@@ -4,7 +4,9 @@ import Repo from '../../repositories/repo.js'
 
 class PlayersStats {  
 
-
+    constructor(){
+        
+    }
     
     
     SavePlayerStats(payload){

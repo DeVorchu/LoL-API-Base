@@ -31,7 +31,6 @@ class PlayerData {
     }
 
     async AddData(req, res){
-        console.log('STEP 1'); 
         const stats = new _usecasePlayersStats()
         const ree = stats.SavePlayerStats(req.body.matchData)
         res.json({status: ree})  
