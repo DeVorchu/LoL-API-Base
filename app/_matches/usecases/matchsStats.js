@@ -9,6 +9,12 @@ class MatchStats {
         await repo.SaveMatchData(payload) 
         
     }
+
+    async GetAllMatchsData(){
+        const repo = new Repo()  
+        return await repo.GetAllMatchsData() 
+        
+    }
 }
 
 export default MatchStats;

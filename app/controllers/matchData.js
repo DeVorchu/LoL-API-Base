@@ -1,4 +1,3 @@
-import MatchDataModel from '../db/models/matchData.js'
 import _usecaseMatchStats from '../_matches/usecases/matchsStats.js'
 
 class MatchData {   
@@ -8,6 +7,12 @@ class MatchData {
         const ree = stats.SaveMatchStats(req.body)
         res.json({status: ree})
     };
+
+    async GetAllData(req, res){
+        const stats = new _usecaseMatchStats()
+        let matches = await stats.GetAllMatchsData()
+        res.json({ matches})
+    }
 
 }
 

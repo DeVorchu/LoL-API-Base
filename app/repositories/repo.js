@@ -1,5 +1,6 @@
 import PlayerData from "../db/models/playerData.js"
 import MatchData from '../db/models/matchData.js'
+import TeamData from '../db/models/teamData.js'
 import MongooseRepo from './mongoseRepo.js'
 
 
@@ -48,8 +49,36 @@ class Repo{
             leagueName: data.leagueName
             
         })
+
+        console.log(data.team100Name);
+
  
         await mongooseRepo.SaveMatchData(matchData)  
+    }
+
+
+    async SaveTeamData(data){
+        const mongooseRepo = new MongooseRepo()
+
+        console.log(data);
+
+        const teamData = new TeamData({
+            name: data.teamName,
+            playersNames: data.players,
+            avatarLink: data.teamAvatar
+            
+        })
+ 
+        await mongooseRepo.SaveTeamData(teamData)  
+    }
+
+    
+
+
+
+    async GetAllMatchsData(){
+        const mongooseRepo = new MongooseRepo()
+        return await mongooseRepo.GetAllMatchsData()  
     }
 
     async GetAllPlayersyData(){
@@ -60,6 +89,19 @@ class Repo{
     async GetAllPlayersyDataByName(name){
         const mongooseRepo = new MongooseRepo()
         return await mongooseRepo.GetAllPlayerDataByName(name)  
+    }
+
+
+
+
+    async GetAllTeams(){
+        const mongooseRepo = new MongooseRepo()
+        return await mongooseRepo.GetAllTeams()  
+    }
+
+    async GetTeamByName(name){
+        const mongooseRepo = new MongooseRepo()
+        return await mongooseRepo.GetTeamByName(name)  
     }
 }
 

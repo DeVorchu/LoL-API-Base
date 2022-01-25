@@ -2,6 +2,7 @@ import express from 'express';
 import playerData from '../controllers/playerData.js';
 import statsData from '../controllers/statsData.js';
 import mathesData from '../controllers/matchData.js'
+import teamsData from '../controllers/teamData.js';
 
 
 
@@ -23,20 +24,20 @@ router.get('/players/:name', playerData.GetAllDataByName);
 router.post('/matches', mathesData.AddData);     
 
 // MATCHES GET
-router.get('/matches/');  
+router.get('/matches/', mathesData.GetAllData);  
 
 // MATCH  DELETE :id 
 router.get('/matches');  
 
 
 // TEAM POST
-router.get('/teams');     
+router.post('/teams', teamsData.AddData);     
 
 // TEAMS GET 
-router.get('/teams');     
+router.get('/teams', teamsData.GetAllTeams);     
 
 // TEAM  GET :name 
-router.get('/teams/:name');     
+router.get('/teams/:name', teamsData.GetTeamByName);     
 
 // TEAM  PUT :id
 router.get('/teams/:id');     
