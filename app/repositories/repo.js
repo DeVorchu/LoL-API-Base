@@ -42,15 +42,13 @@ class Repo{
         const mongooseRepo = new MongooseRepo()
 
         const matchData = new MatchData({
-            date: data.leagueName ,            
-            matchData: data.matchData.statsJson,
+            date: data.date ,             
+            matchData: data.matchData.statsJson, 
             team100Name: data.team100Name,
             team200Name: data.team200Name,
             leagueName: data.leagueName
             
-        })
-
-        console.log(data.team100Name);
+        })        
 
  
         await mongooseRepo.SaveMatchData(matchData)  
@@ -102,6 +100,7 @@ class Repo{
     async GetTeamByName(name){
         const mongooseRepo = new MongooseRepo()
         return await mongooseRepo.GetTeamByName(name)  
+        
     }
 }
 

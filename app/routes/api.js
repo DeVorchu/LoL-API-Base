@@ -9,7 +9,8 @@ import teamsData from '../controllers/teamData.js';
 const router = new express.Router(); 
 
 // PLAYER POST
-// router.post('/players', playerData.AddData);
+router.post('/players', playerData.AddData);
+
 
 // PLAYERS GET
 router.get('/players', playerData.GetAllData); 
@@ -23,7 +24,7 @@ router.get('/players/:name', playerData.GetAllDataByName);
 // MATCH POST
 router.post('/matches', mathesData.AddData);     
 
-// MATCHES GET
+// MATCHES GET 
 router.get('/matches/', mathesData.GetAllData);  
 
 // MATCH  DELETE :id 
@@ -43,7 +44,7 @@ router.get('/teams/:name', teamsData.GetTeamByName);
 router.get('/teams/:id');     
 
 // TEAM  DELETE :id
-router.get('/teams/:id');     
+router.get('/teams/:id');      
 
 
 // STATS GET
